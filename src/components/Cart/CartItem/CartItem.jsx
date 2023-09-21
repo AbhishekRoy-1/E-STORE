@@ -19,7 +19,6 @@ const CartItem = () => {
                     </div>
                     <div className="prod-details">
                         <span className="name">{item.attributes.title}</span>
-                        <MdClose className="close-btn" onClick={() => handleRemoveFromCart(item)}/>
                         <div className="quantity-buttons">
                             <span onClick={() => handleCartProductQuantity('dec',item)}>-</span>
                             <span>{item.attributes.quantity}</span>
@@ -30,6 +29,7 @@ const CartItem = () => {
                             <span>x</span>
                             <span className="highlight">&#8377;{item.attributes.price * item.attributes.quantity}</span>
                         </div>
+                        <MdClose className="close-btn" onClick={() => handleRemoveFromCart(item)}/>
                     </div>
                 </div>
             ))}

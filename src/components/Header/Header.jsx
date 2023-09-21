@@ -7,6 +7,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import Search from "./Search/Search";
 import Cart from "../Cart/Cart";
 import {Context} from "../../utils/context";
+import CartData from "../Table/CartData";
 
 const Header = () => {
     const [scrolled, setScrolled] = useState(false);
@@ -14,6 +15,8 @@ const Header = () => {
     const [showSearch, setShowSearch] = useState(false);
     const {cartCount} = useContext(Context);
     const navigate = useNavigate();
+    const [showTable, setShowTable] = useState(false);
+
     const handleScroll=()=>{
         const offset = window.scrollY;
         if(offset > 200){
@@ -32,7 +35,11 @@ const Header = () => {
                     <ul className="left">
                         <li onClick={()=> navigate("/")}>Home</li>
                         <li>About</li>
-                        <li>Categories</li>
+                        <li className="table-data" onClick={()=>{
+                            setShowTable(true);
+                            
+
+                        }}>Table Data  {!!cartCount && <span>{cartCount}</span>}</li>
                     </ul>
                     <div className="center" onClick={()=> navigate("/")}>E-STORE</div>
                     <div className="right">
@@ -45,6 +52,7 @@ const Header = () => {
                     </div>
                 </div>
             </header>
+            { showTable && <CartData setShowTable={setShowTable}/>}
             {showCart && <Cart setShowCart={setShowCart}/>}
            {showSearch && <Search setShowSearch={setShowSearch}/>}
         </>
